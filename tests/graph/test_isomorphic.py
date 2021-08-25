@@ -235,6 +235,28 @@ class TestIsomorphic(unittest.TestCase):
         graph.add_edges_from_no_data([(0, 0), (0, 1)])
         self.assertTrue(retworkx.is_isomorphic(graph, graph))
 
+    def test_empty_isomorphic_identical(self):
+        graph_a = retworkx.PyGraph()
+        graph_b = retworkx.PyGraph()
+
+        for id_order in [False, True]:
+            with self.subTest(id_order=id_order):
+                self.assertTrue(
+                    retworkx.is_isomorphic(graph_a, graph_b, id_order=id_order)
+                )
+
+    def test_empty_isomorphic_compare_nodes_mismatch_node_data(self):
+        graph_a = retworkx.PyGraph()
+        graph_b = retworkx.PyGraph()
+
+        for id_order in [False, True]:
+            with self.subTest(id_order=id_order):
+                self.assertTrue(
+                    retworkx.is_isomorphic(
+                        graph_a, graph_b, lambda x, y: x == y, id_order=id_order
+                    )
+                )
+
     def test_graph_isomorphic_insufficient_call_limit(self):
         graph = retworkx.generators.path_graph(5)
         self.assertFalse(retworkx.is_isomorphic(graph, graph, call_limit=2))

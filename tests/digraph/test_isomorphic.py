@@ -275,6 +275,28 @@ class TestIsomorphic(unittest.TestCase):
             retworkx.is_isomorphic(graph, second_graph, id_order=True)
         )
 
+    def test_digraph_empty_isomorphic_identical(self):
+        graph_a = retworkx.PyDiGraph()
+        graph_b = retworkx.PyDiGraph()
+
+        for id_order in [False, True]:
+            with self.subTest(id_order=id_order):
+                self.assertTrue(
+                    retworkx.is_isomorphic(graph_a, graph_b, id_order=id_order)
+                )
+
+    def test_digraph_empty_isomorphic_compare_nodes_mismatch_node_data(self):
+        graph_a = retworkx.PyDiGraph()
+        graph_b = retworkx.PyDiGraph()
+
+        for id_order in [False, True]:
+            with self.subTest(id_order=id_order):
+                self.assertTrue(
+                    retworkx.is_isomorphic(
+                        graph_a, graph_b, lambda x, y: x == y, id_order=id_order
+                    )
+                )
+
     def test_digraph_isomorphic_insufficient_call_limit(self):
         graph = retworkx.generators.directed_path_graph(5)
         self.assertFalse(retworkx.is_isomorphic(graph, graph, call_limit=2))
