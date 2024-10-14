@@ -1,8 +1,8 @@
 ---
-name: Wheel Builds
+name: Wheel Test Build 3.13
 on:
   push:
-    branches: [ 'py313-test' ]
+    branches: [ py313-test ]
 jobs:
   rustworkx-core:
     name: Publish rustworkx-core
