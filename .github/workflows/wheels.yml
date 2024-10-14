@@ -2,8 +2,7 @@
 name: Wheel Builds
 on:
   push:
-    tags:
-      - '*'
+    branches: [ 'py313-test' ]
 jobs:
   rustworkx-core:
     name: Publish rustworkx-core
