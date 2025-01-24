@@ -2,8 +2,6 @@
 name: Wheels for Aarch64 (Ad-Hoc)
 on:
   push:
-    branches:
-      - 'stable/**'
 jobs:
   build_wheels_aarch64:
     name: Build wheels on ${{ matrix.os }}
