@@ -1,9 +1,7 @@
 ---
-name: Wheel Builds
+name: Wheel Test Build Aarch64
 on:
   push:
-    tags:
-      - '*'
 jobs:
   rustworkx-core:
     name: Publish rustworkx-core
